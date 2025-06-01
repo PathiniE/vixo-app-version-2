@@ -1,9 +1,8 @@
-// components/Header.tsx
 "use client";
 
 import React from "react";
-
 import Image from "next/image";
+import Link from "next/link";
 
 const Header: React.FC = () => {
   return (
@@ -12,10 +11,13 @@ const Header: React.FC = () => {
         <Image src={"/home/time.png"} alt="time" height={24} width={24} />
         <span className="text-yellow-400 text-lg font-medium">04:38:20</span>
       </div>
-      <div className="flex items-center space-x-3 bg-[#E2531933] p-2 rounded-lg">
-        <Image src={"/home/wallet.png"} alt="wallet" height={24} width={24} />
-        <span className="text-orange-400 text-lg font-medium">Wallet</span>
-      </div>
+      
+      <Link href="/pages/wallet">
+        <div className="flex items-center space-x-3 bg-[#E2531933] p-2 rounded-lg cursor-pointer active:bg-[#E2531950] active:scale-95 transition-all duration-150">
+          <Image src={"/home/wallet.png"} alt="wallet" height={24} width={24} />
+          <span className="text-orange-400 text-lg font-medium">Wallet</span>
+        </div>
+      </Link>
     </div>
   );
 };
