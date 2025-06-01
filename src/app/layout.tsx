@@ -18,8 +18,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        {/* Mobile and Tablet Only - No Desktop */}
-        <div className="w-full min-h-screen sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl mx-auto">
+        {/* Mobile and Tablet */}
+        <div className="w-full min-h-screen xl:hidden">
           {children}
         </div>
         

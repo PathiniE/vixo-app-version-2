@@ -1,18 +1,18 @@
 // app/page.tsx
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import Header from '@/components/home/Header';
-import Balance from '@/components/home/Balance';
-import LevelProgress from '@/components/home/LevelProgress';
-import FoxCharacter from '@/components/home/FoxCharacter';
-import BottomNavigation from '@/components/home/BottomNavigation';
+import React, { useState } from "react";
+import Header from "@/components/home/Header";
+import Balance from "@/components/home/Balance";
+import LevelProgress from "@/components/home/LevelProgress";
+import FoxCharacter from "@/components/home/FoxCharacter";
+import BottomNavigation from "@/components/home/BottomNavigation";
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('lotteries');
+  const [activeTab, setActiveTab] = useState("lotteries");
 
   const handleFoxClick = () => {
-    console.log('Fox button clicked!');
+    console.log("Fox button clicked!");
     // Add your navigation or action logic here
   };
 
@@ -23,31 +23,27 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#191919] text-white flex flex-col pb-20">
+    <div className="min-h-screen bg-[#191919] flex flex-col px-6">
       {/* Header */}
       <Header />
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col items-center justify-center px-6 space-y-8">
-        {/* Balance Section */}
+      {/* Balance Section */}
+      <div className="flex justify-center pt-8 mb-8">
         <Balance amount="000,000" />
+      </div>
 
-        {/* Level Progress */}
-        <LevelProgress 
-          gameType="Gamesbet" 
-          levelsLeft="10/10" 
-          progress={100} 
-        />
+      {/* Level Progress */}
+      <div className="">
+        <LevelProgress gameType="Gamesbet" levelsLeft="10/10" progress={100} />
+      </div>
 
-        {/* Fox Character Button */}
+      {/* Fox Character Button - Centered and takes remaining space */}
+      <div className="flex-1 flex items-center justify-center">
         <FoxCharacter onClick={handleFoxClick} />
       </div>
 
       {/* Bottom Navigation */}
-      <BottomNavigation 
-        activeTab={activeTab} 
-        onTabChange={handleTabChange} 
-      />
+      <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
     </div>
   );
 }
