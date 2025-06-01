@@ -2,6 +2,7 @@
 'use client';
 
 import React from 'react';
+import Image from "next/image";
 
 interface BalanceProps {
   amount: string;
@@ -10,10 +11,10 @@ interface BalanceProps {
 const Balance: React.FC<BalanceProps> = ({ amount }) => {
   return (
     <div className="text-center">
-      <p className="text-gray-400 text-sm mb-2">Your Balance:</p>
-      <div className="flex items-center justify-center space-x-2">
-        <div className="w-6 h-6 bg-yellow-400 rounded-full"></div>
-        <span className="text-4xl font-bold">{amount}</span>
+      <p className="text-[#B2B2B2] text-base mb-1">Your Balance:</p>
+      <div className="flex items-center justify-center space-x-3">
+         <Image src={"/home/balance.png"} alt="balance" height={50} width={50} />
+        <span className="text-5xl font-bold text-white">{amount}</span>
       </div>
     </div>
   );
