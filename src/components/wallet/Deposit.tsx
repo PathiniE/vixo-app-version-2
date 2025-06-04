@@ -102,7 +102,7 @@ const Deposit: React.FC<DepositModalProps> = ({ isOpen, onClose }) => {
                 className={`py-4 px-6 text-lg font-medium transition-colors min-h-[50px] ${
                   selectedAmount === amount
                     ? "bg-[#E2531933] border-[#E25319] border text-white"
-                    : "bg-[#4A4A4A] hover:bg-[#5A5A5A] text-white border-gray-600"
+                    : "bg-[#FFFFFF33]  text-white border-[#B2B2B2] border"
                 }`}
               >
                 ${amount}

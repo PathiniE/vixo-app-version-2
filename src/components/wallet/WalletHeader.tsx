@@ -11,7 +11,7 @@ const WalletHeader: React.FC = () => {
     <div className="flex items-center justify-between py-4 pt-12  safe-area-inset-top">
       <button 
         onClick={() => router.back()}
-        className="flex items-center space-x-2 text-white active:scale-95 transition-transform"
+        className="flex items-center space-x-2 text-white "
         aria-label="Go back"
       >
         <ChevronLeft size={24} />

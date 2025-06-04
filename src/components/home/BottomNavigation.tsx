@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import { Menu, Users, Info, Crown, Play } from 'lucide-react';
 
@@ -10,11 +11,11 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
   activeTab = 'lotteries',
   onTabChange = () => {}
 }) => {
-  // Navigation configuration with paths
+  // Navigation configuration with updated paths
   const navigationPages = {
     play: '/play',
-    tasks: '/tasks', 
-    lotteries: '/lotteries',
+    tasks: '/tasks',
+    lotteries: '/pages/lottery', // Updated path for lottery page
     friends: '/friends',
     stats: '/stats'
   };
@@ -29,11 +30,30 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
 
   const handleTabClick = (tab: any) => {
     onTabChange(tab.id);
-    // Here you can add navigation logic, e.g.:
-    // window.location.href = tab.path;
-    // or if using React Router: navigate(tab.path);
-    // or if using Next.js: router.push(tab.path);
+    
+    // Navigation logic - choose one based on your routing setup:
+    
+    // For Next.js App Router (recommended if using Next.js):
+    // import { useRouter } from 'next/navigation';
+    // const router = useRouter();
+    // router.push(tab.path);
+    
+    // For React Router:
+    // import { useNavigate } from 'react-router-dom';
+    // const navigate = useNavigate();
+    // navigate(tab.path);
+    
+    // For simple client-side routing:
+    if (typeof window !== 'undefined') {
+      window.location.href = tab.path;
+    }
+    
     console.log(`Navigating to: ${tab.path}`);
+  };
+
+  const handleLotteriesClick = () => {
+    const lotteriesTab = { id: 'lotteries', path: navigationPages.lotteries };
+    handleTabClick(lotteriesTab);
   };
 
   return (
