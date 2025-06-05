@@ -1,6 +1,7 @@
 // src/components/lottery/UpcomingLotteries.tsx
 import React, { useState } from "react";
 import AllLotteries from "./AllLotteries";
+import LotteryParticipation from "./LotteryParticipation";
 
 interface LotteryItem {
   id: string;
@@ -32,6 +33,8 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
   ],
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isParticipationModalOpen, setIsParticipationModalOpen] = useState(false);
+  const [selectedLottery, setSelectedLottery] = useState<LotteryItem | null>(null);
 
   const handleLotteryClick = (lottery: LotteryItem) => {
     console.log("Clicked lottery:", lottery.id);
@@ -39,12 +42,21 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
 
   const handleParticipate = (lottery: LotteryItem, e: React.MouseEvent) => {
     e.stopPropagation();
-    console.log("Participate in lottery:", lottery.id);
-    
+    setSelectedLottery(lottery);
+    setIsParticipationModalOpen(true);
+    // Close the all lotteries modal if it's open
+    if (isModalOpen) {
+      setIsModalOpen(false);
+    }
   };
 
   const handleSeeAllClick = () => {
     setIsModalOpen(true);
+  };
+
+  const handleCloseParticipationModal = () => {
+    setIsParticipationModalOpen(false);
+    setSelectedLottery(null);
   };
 
   return (
@@ -65,7 +77,7 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
             <div
               key={lottery.id}
               onClick={() => handleLotteryClick(lottery)}
-              className="bg-black rounded-lg p-3 flex-1"
+              className="bg-black rounded-lg p-3 flex-1 cursor-pointer"
             >
               <div className="text-center space-y-2">
                 {/* Win Prize */}
@@ -90,7 +102,7 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
                 {/* Participate Button */}
                 <button
                   onClick={(e) => handleParticipate(lottery, e)}
-                  className="w-full bg-[#E25319] text-white py-2 px-2 rounded-lg text-sm "
+                  className="w-full bg-[#E25319] text-white py-2 px-2 rounded-lg text-sm hover:bg-[#d14a15] transition-colors"
                 >
                   Participate
                 </button>
@@ -105,6 +117,12 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
         onClose={() => setIsModalOpen(false)}
         lotteries={lotteries}
         onParticipate={handleParticipate}
+      />
+
+      <LotteryParticipation
+        isOpen={isParticipationModalOpen}
+        onClose={handleCloseParticipationModal}
+        lottery={selectedLottery}
       />
     </>
   );

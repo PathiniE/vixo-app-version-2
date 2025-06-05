@@ -1,4 +1,4 @@
-// src/components/lottery/AllLotteriesModal.tsx
+// src/components/lottery/AllLotteries.tsx
 import React from "react";
 import { ChevronLeft } from "lucide-react";
 import {
