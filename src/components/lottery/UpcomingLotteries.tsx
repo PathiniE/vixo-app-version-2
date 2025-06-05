@@ -1,14 +1,11 @@
 // src/components/lottery/UpcomingLotteries.tsx
-import React from 'react';
-
+import React, { useState } from "react";
+import AllLotteries from "./AllLotteries";
 
 interface LotteryItem {
   id: string;
   prize: string;
-  ticketPrice: string;
   startDate: string;
-  type: 'daily' | 'weekly' | 'monthly';
-  participants?: number;
 }
 
 interface UpcomingLotteriesProps {
@@ -18,85 +15,98 @@ interface UpcomingLotteriesProps {
 const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
   lotteries = [
     {
-      id: '1',
-      prize: '10 USDT',
-      ticketPrice: '1 USDT',
-      startDate: 'Jun 4, 2025',
-      type: 'daily',
-      participants: 856
+      id: "1",
+      prize: "10 USDT",
+      startDate: "Jun 4, 2025",
     },
     {
-      id: '2',
-      prize: '10 USDT',
-      ticketPrice: '1 USDT',
-      startDate: 'Jun 5, 2025',
-      type: 'daily',
-      participants: 234
+      id: "2",
+      prize: "10 USDT",
+      startDate: "Jun 5, 2025",
     },
     {
-      id: '3',
-      prize: '10 USDT',
-      ticketPrice: '1 USDT',
-      startDate: 'Jun 9, 2025',
-      type: 'weekly',
-      participants: 1247
-    }
-  ]
+      id: "3",
+      prize: "10 USDT",
+      startDate: "Jun 9, 2025",
+    },
+  ],
 }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleLotteryClick = (lottery: LotteryItem) => {
-    console.log('Clicked lottery:', lottery.id);
-    // Add navigation or modal logic here
+    console.log("Clicked lottery:", lottery.id);
   };
 
   const handleParticipate = (lottery: LotteryItem, e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent card click when button is clicked
-    console.log('Participate in lottery:', lottery.id);
-    // Add participation logic here
+    e.stopPropagation();
+    console.log("Participate in lottery:", lottery.id);
+    
+  };
+
+  const handleSeeAllClick = () => {
+    setIsModalOpen(true);
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-white">Upcoming Lotteries</h2>
-        <button className="text-white text-sm font-medium">
-          See all
-        </button>
-      </div>
-
-      <div className="flex gap-2">
-        {lotteries.map((lottery) => (
-          <div
-            key={lottery.id}
-            onClick={() => handleLotteryClick(lottery)}
-            className="bg-black rounded-lg p-3 flex-1"
+    <>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-bold text-white">Upcoming Lotteries</h2>
+          <button
+            onClick={handleSeeAllClick}
+            className="text-white text-base"
           >
-            <div className="text-center space-y-2">
-              {/* Win Prize */}
-              <div>
-                <div className="text-white text-sm font-medium mb-1">Win</div>
-                <div className="text-white text-2xl font-bold">
-                  {lottery.prize.split(' ')[0]}<span className="text-white text-xs ml-1">USTD</span>
+            See all
+          </button>
+        </div>
+
+        <div className="flex gap-2">
+          {lotteries.map((lottery) => (
+            <div
+              key={lottery.id}
+              onClick={() => handleLotteryClick(lottery)}
+              className="bg-black rounded-lg p-3 flex-1"
+            >
+              <div className="text-center space-y-2">
+                {/* Win Prize */}
+                <div>
+                  <div className="text-white text-base mb-1">Win</div>
+                  <div className="text-white text-3xl font-bold">
+                    {lottery.prize.split(" ")[0]}
+                    <span className="text-white text-sm ml-1">USDT</span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Start Time */}
-              <div className="text-white text-xs">
-                Start at {lottery.startDate === 'Jun 4, 2025' ? '5:30PM' : 
-                         lottery.startDate === 'Jun 5, 2025' ? '5:30PM' : '5:30PM'}
-              </div>
+                {/* Start Time */}
+                <div className="text-white text-xs">
+                  Start at{" "}
+                  {lottery.startDate === "Jun 4, 2025"
+                    ? "5:30PM"
+                    : lottery.startDate === "Jun 5, 2025"
+                    ? "5:30PM"
+                    : "5:30PM"}
+                </div>
 
-              {/* Participate Button */}
-              <button
-                onClick={(e) => handleParticipate(lottery, e)}
-                className="w-full bg-[#E25319] text-white py-2 px-2 rounded-lg text-sm"
-              >
-                Participate
-              </button>
+                {/* Participate Button */}
+                <button
+                  onClick={(e) => handleParticipate(lottery, e)}
+                  className="w-full bg-[#E25319] text-white py-2 px-2 rounded-lg text-sm "
+                >
+                  Participate
+                </button>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+
+      <AllLotteries
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        lotteries={lotteries}
+        onParticipate={handleParticipate}
+      />
+    </>
   );
 };
 
