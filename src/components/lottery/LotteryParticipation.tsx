@@ -25,21 +25,22 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
   onClose,
   lottery,
 }) => {
-  const [timeLeft, setTimeLeft] = useState({ minutes: 5, seconds: 0 });
+  const [totalSeconds, setTotalSeconds] = useState(300); // 5 minutes = 300 seconds
+  const TOTAL_TIME = 300;
 
   useEffect(() => {
-    if (!isOpen) return;
+    if (!isOpen) {
+      setTotalSeconds(300); // Reset to 5 minutes when modal opens
+      return;
+    }
 
     const timer = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 };
-        } else if (prev.minutes > 0) {
-          return { minutes: prev.minutes - 1, seconds: 59 };
-        } else {
+      setTotalSeconds((prev) => {
+        if (prev <= 0) {
           clearInterval(timer);
-          return { minutes: 0, seconds: 0 };
+          return 0;
         }
+        return prev - 1;
       });
     }, 1000);
 
@@ -53,7 +54,14 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
 
   if (!lottery) return null;
 
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
   const formatTime = (time: number) => time.toString().padStart(2, "0");
+
+  // Calculate progress: starts at 0 and goes to 100% as time decreases
+  const progress = ((TOTAL_TIME - totalSeconds) / TOTAL_TIME) * 100;
+  const circumference = 2 * Math.PI * 45;
+  const strokeDashoffset = circumference - (progress / 100) * circumference;
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
@@ -123,8 +131,8 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
                   fill="transparent"
                   stroke="#E25319"
                   strokeWidth="3"
-                  strokeDasharray={`${2 * Math.PI * 45}`}
-                  strokeDashoffset={`${2 * Math.PI * 45 * 0.25}`} // 75% complete
+                  strokeDasharray={circumference}
+                  strokeDashoffset={strokeDashoffset}
                   strokeLinecap="round"
                   className="transition-all duration-1000 ease-linear"
                 />
@@ -133,7 +141,7 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
               {/* Timer Text */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-white text-4xl font-bold">
-                  {formatTime(timeLeft.minutes)}:{formatTime(timeLeft.seconds)}
+                  {formatTime(minutes)}:{formatTime(seconds)}
                 </div>
               </div>
             </div>
