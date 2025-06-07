@@ -7,6 +7,7 @@ import Balance from "@/components/home/Balance";
 import LevelProgress from "@/components/home/LevelProgress";
 import FoxCharacter from "@/components/home/FoxCharacter";
 import BottomNavigation from "@/components/home/BottomNavigation";
+import Image from "next/image";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState("lotteries");
@@ -36,11 +37,13 @@ export default function Home() {
       <div className="">
         <LevelProgress gameType="Gamesbet" levelsLeft="10/10" progress={100} />
       </div>
+      
 
       {/* Fox Character Button - Centered and takes remaining space */}
       <div className="flex-1 flex items-center justify-center">
         <FoxCharacter onClick={handleFoxClick} />
       </div>
+      
 
       {/* Bottom Navigation */}
       <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />

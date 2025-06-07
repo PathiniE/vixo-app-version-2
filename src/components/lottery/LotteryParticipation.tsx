@@ -1,4 +1,3 @@
-// src/components/lottery/LotteryParticipationModal.tsx
 import React, { useState, useEffect } from "react";
 import { ChevronLeft } from "lucide-react";
 import {
@@ -54,7 +53,7 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
 
   if (!lottery) return null;
 
-  const formatTime = (time: number) => time.toString().padStart(2, '0');
+  const formatTime = (time: number) => time.toString().padStart(2, "0");
 
   return (
     <Sheet open={isOpen} onOpenChange={onClose}>
@@ -81,19 +80,19 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
           {/* Lottery Fund Header */}
           <div className="text-center space-y-2">
             <div className="text-gray-400 text-sm">Lottery Fund</div>
-            <div 
+            <div
               className="text-5xl font-bold"
               style={{
-                background: 'linear-gradient(to right, #F4B92E, #E25319)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text'
+                background: "linear-gradient(to right, #F4B92E, #E25319)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
               }}
             >
               {lottery.prize.split(" ")[0]} USDT
             </div>
             <div className="text-white text-lg">
-              Lottery #{lottery.id.padStart(5, '0')}
+              Lottery #{lottery.id.padStart(5, "0")}
             </div>
           </div>
 
@@ -106,12 +105,7 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
                 viewBox="0 0 100 100"
               >
                 {/* Black background circle */}
-                <circle
-                  cx="50"
-                  cy="50"
-                  r="40"
-                  fill="#000000"
-                />
+                <circle cx="50" cy="50" r="40" fill="#000000" />
                 {/* Background circle border */}
                 <circle
                   cx="50"
@@ -135,7 +129,7 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
                   className="transition-all duration-1000 ease-linear"
                 />
               </svg>
-              
+
               {/* Timer Text */}
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-white text-4xl font-bold">
@@ -148,7 +142,7 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
           {/* Bet Now Button */}
           <Button
             onClick={handleBetNow}
-            className="bg-[#E2531933]  text-[#E25319] px-10 py-4 text-lg font-semibold rounded-lg transition-colors"
+            className="bg-[#E2531933] text-[#E25319] px-10 py-4 text-lg font-semibold rounded-lg hover:bg-[#E2531955] transition-colors"
           >
             Bet Now
           </Button>
