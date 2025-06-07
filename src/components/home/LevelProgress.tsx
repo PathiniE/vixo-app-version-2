@@ -7,7 +7,7 @@ import { HiChevronRight } from "react-icons/hi";
 interface LevelProgressProps {
   gameType: string;
   levelsLeft: string;
-  progress: number; // 0-100
+  progress: number; 
 }
 
 const LevelProgress: React.FC<LevelProgressProps> = ({
@@ -31,7 +31,7 @@ const LevelProgress: React.FC<LevelProgressProps> = ({
       {/* Progress Bar*/}
       <div className="w-full h-3 bg-[#555555] rounded-full overflow-hidden">
         <div
-          className="h-full bg-gradient-to-r from-green-400 to-yellow-400 rounded-full transition-all duration-300"
+          className="h-full bg-yellow-400 rounded-full transition-all duration-300"
           style={{ width: `${progress}%` }}
         ></div>
       </div>
