@@ -6,8 +6,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Game App',
-  description: 'Mobile gaming application',
+  title: 'vixoverse',
+  description: '',
 };
 
 interface RootLayoutProps {
