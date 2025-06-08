@@ -13,7 +13,7 @@ const FoxCharacter: React.FC<FoxCharacterProps> = ({ onClick }) => {
   return (
     <div className="relative">
       <Button
-        onClick={onClick}
+        onClick={onClick} className="bg-transparent border-none"
         
       >
         <Image

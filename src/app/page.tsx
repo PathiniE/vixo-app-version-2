@@ -24,7 +24,16 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#191919] flex flex-col px-6">
+    <div className="min-h-screen bg-[#191919] flex flex-col relative z-10 px-6">
+      <div className="absolute z-0 top-0 right-0 pointer-events-none">
+          <Image
+            src={"/wallet/balance-blur.png"}
+            height={400}
+            width={400}
+            alt="shadow"
+            className="opacity-80 rotate-90"
+          />
+        </div> 
       {/* Header */}
       <Header />
 
@@ -32,6 +41,15 @@ export default function Home() {
       <div className="flex justify-center pt-8 mb-8">
         <Balance amount="000,000" />
       </div>
+      <div className="absolute z-0 bottom-20 left-0 pointer-events-none">
+          <Image
+            src={"/wallet/balance-blur.png"}
+            height={800}
+            width={800}
+            alt="shadow"
+            className="opacity-80"
+          />
+        </div> 
 
       {/* Level Progress */}
       <div className="">

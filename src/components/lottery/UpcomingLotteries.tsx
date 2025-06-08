@@ -56,13 +56,10 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
     const currentMinute = currentDate.getMinutes();
-    const currentTime = currentHour * 60 + currentMinute; // Convert to minutes since midnight
+    const currentTime = currentHour * 60 + currentMinute; 
     
-    // Lottery starts at 5:20 PM (17:20) = 17 * 60 + 20 = 1040 minutes
     const lotteryStartTime = 17 * 60 + 20; // 5:20 PM in minutes
     
-    // For demo purposes, let's say lottery #1 is ongoing (you can adjust this logic)
-    // In a real app, you'd compare actual dates and times
     return lottery.id === "1" && currentTime >= lotteryStartTime;
   };
 
