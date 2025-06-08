@@ -1,60 +1,3 @@
-// // src/components/lottery/LotteryHeader.tsx
-// import React from "react";
-// import { ChevronLeft } from "lucide-react";
-// import Image from "next/image";
-
-// interface LotteryHeaderProps {
-//   onBack?: () => void;
-//   balance?: string;
-// }
-
-// const LotteryHeader: React.FC<LotteryHeaderProps> = ({
-//   onBack = () => window.history.back(),
-//   balance = "0.00",
-// }) => {
-//   return (
-//     <>
-//     <div className="flex items-center justify-between py-4 pt-12">
-//       {/* Back Button */}
-//       <button
-//         onClick={onBack}
-//         className="flex items-center space-x-2 text-white"
-//       >
-//         <ChevronLeft size={24} />
-//         <span className="text-base">Back</span>
-//       </button>
-
-//       {/* Title */}
-//       <h1 className="text-white text-lg">Wallet</h1>
-
-//       {/* Balance */}
-//       <div className="flex items-center space-x-2 bg-[#E2531933] p-2 rounded-lg">
-//         <Image
-//           src={"/lottery/gold-coin.png"}
-//           height={22}
-//           width={22}
-//           alt="coins"
-//         />
-//         <span className="text-[#E25319]">{balance}</span>
-//       </div>
-     
-//     </div>
-//      <div className="w-full h-32 relative overflow-hidden rounded-lg shadow-lg" >
-//         <Image
-//           src={"/lottery/vixo-cover-photo.png"}
-//           fill
-//           className="object-cover"
-//           alt="Vixo Verse"
-//         />
-//       </div>
-//       </>
-//   );
-// };
-
-// export default LotteryHeader;
-
-
-
 // src/components/lottery/LotteryHeader.tsx
 import React, { useEffect, useState } from "react";
 import { ChevronLeft } from "lucide-react";
@@ -81,7 +24,7 @@ const LotteryHeader: React.FC<LotteryHeaderProps> = ({
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
-  // Array of same image for now - you can replace with different images later
+  // Array of images
   const carouselImages = [
     "/lottery/vixo-cover-photo.png",
     "/lottery/vixo-cover-photo.png",
@@ -161,7 +104,7 @@ const LotteryHeader: React.FC<LotteryHeaderProps> = ({
               </CarouselItem>
             ))}
           </CarouselContent>
-          
+
           {/* Hide default navigation buttons */}
           <CarouselPrevious className="hidden" />
           <CarouselNext className="hidden" />
@@ -173,8 +116,8 @@ const LotteryHeader: React.FC<LotteryHeaderProps> = ({
             <button
               key={index}
               className={`w-2 h-2 rounded-full transition-all  duration-300 ${
-                index === current 
-                  ? "bg-white shadow-lg" 
+                index === current
+                  ? "bg-white shadow-lg"
                   : "bg-white/50 hover:bg-white/70 "
               }`}
               onClick={() => api?.scrollTo(index)}

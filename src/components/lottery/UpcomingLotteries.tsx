@@ -1,7 +1,16 @@
 // src/components/lottery/UpcomingLotteries.tsx
 import React, { useState } from "react";
-import { Alert, AlertDescription } from '@/components/ui/alert';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import AllLotteries from "./AllLotteries";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface LotteryItem {
   id: string;
@@ -41,62 +50,57 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
 
   const handleParticipate = (lottery: LotteryItem, e: React.MouseEvent) => {
     e.stopPropagation();
-    
-    // Show the alert
+
+    // Show the alert dialog
     setShowLotteryAlert(true);
-    
-    
   };
 
   const handleSeeAllClick = () => {
     setIsModalOpen(true);
   };
 
-
-
   const handleCloseAlert = () => {
     setShowLotteryAlert(false);
-    // Restore body opacity when alert is closed
-    document.body.style.opacity = '1';
   };
 
   return (
     <>
-      {/* Lottery Alert */}
-      {showLotteryAlert && (
-        <div className="fixed inset-0 flex items-center justify-center z-50">
-          <Alert className="bg-gray-700 border-gray-600 text-white shadow-xl w-80 relative">
-            <button
-              onClick={handleCloseAlert}
-              className="absolute top-2 right-2 text-gray-400 hover:text-white transition-colors text-lg"
-            >
-              ✕
-            </button>
-            <AlertDescription className="text-center pt-2 justify-center flex flex-col items-center mt-4">
-              <div className="text-white text-base">
+      <AlertDialog open={showLotteryAlert} onOpenChange={setShowLotteryAlert}>
+        <AlertDialogContent className="bg-[#2a2a2a] border-none text-white max-w-sm">
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setShowLotteryAlert(false)}
+            className="absolute right-2 top-2 text-gray-400 hover:text-white h-10 w-10"
+          >
+            <X size={20} />
+          </Button>
+          <AlertDialogHeader className="text-center">
+            
+            <AlertDialogDescription className="text-center flex flex-col mt-2 space-y-2">
+              <span className="text-[#FFFFFF80] text-lg">
                 The lottery draw begins at 5:20 PM!
-              </div>
-              <div className="text-gray-300 text-sm mb-4">
+              </span>
+              <span className="text-[#FFFFFF80] text-sm">
                 Please wait for 2 more hours.
-              </div>
-              <button
-                onClick={handleCloseAlert}
-                className="bg-[#E25319] text-white px-8 py-2 rounded-lg justify-center"
-              >
-                OK
-              </button>
-            </AlertDescription>
-          </Alert>
-        </div>
-      )}
+              </span>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <div className="flex justify-center mt-4">
+            <AlertDialogAction
+              onClick={handleCloseAlert}
+              className="bg-[#E2531933] text-[#E25319] px-8 py-2 text-lg rounded-lg"
+            >
+              OK
+            </AlertDialogAction>
+          </div>
+        </AlertDialogContent>
+      </AlertDialog>
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Upcoming Lotteries</h2>
-          <button
-            onClick={handleSeeAllClick}
-            className="text-white text-base"
-          >
+          <button onClick={handleSeeAllClick} className="text-white text-base">
             See all
           </button>
         </div>
