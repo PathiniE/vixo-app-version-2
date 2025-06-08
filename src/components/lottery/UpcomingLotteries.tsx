@@ -9,6 +9,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import AllLotteries from "./AllLotteries";
+import LotteryParticipation from "./LotteryParticipation";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -43,16 +44,39 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showLotteryAlert, setShowLotteryAlert] = useState(false);
+  const [showBettingModal, setShowBettingModal] = useState(false);
+  const [selectedLottery, setSelectedLottery] = useState<LotteryItem | null>(null);
 
   const handleLotteryClick = (lottery: LotteryItem) => {
     console.log("Clicked lottery:", lottery.id);
   };
 
+  // Function to check if lottery is currently ongoing
+  const isLotteryOngoing = (lottery: LotteryItem): boolean => {
+    const currentDate = new Date();
+    const currentHour = currentDate.getHours();
+    const currentMinute = currentDate.getMinutes();
+    const currentTime = currentHour * 60 + currentMinute; // Convert to minutes since midnight
+    
+    // Lottery starts at 5:20 PM (17:20) = 17 * 60 + 20 = 1040 minutes
+    const lotteryStartTime = 17 * 60 + 20; // 5:20 PM in minutes
+    
+    // For demo purposes, let's say lottery #1 is ongoing (you can adjust this logic)
+    // In a real app, you'd compare actual dates and times
+    return lottery.id === "1" && currentTime >= lotteryStartTime;
+  };
+
   const handleParticipate = (lottery: LotteryItem, e: React.MouseEvent) => {
     e.stopPropagation();
+    setSelectedLottery(lottery);
 
-    // Show the alert dialog
-    setShowLotteryAlert(true);
+    if (isLotteryOngoing(lottery)) {
+      // Show betting modal if lottery is ongoing
+      setShowBettingModal(true);
+    } else {
+      // Show alert dialog if lottery hasn't started yet
+      setShowLotteryAlert(true);
+    }
   };
 
   const handleSeeAllClick = () => {
@@ -63,8 +87,14 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
     setShowLotteryAlert(false);
   };
 
+  const handleCloseBettingModal = () => {
+    setShowBettingModal(false);
+    setSelectedLottery(null);
+  };
+
   return (
     <>
+      {/* Alert for lottery not started yet */}
       <AlertDialog open={showLotteryAlert} onOpenChange={setShowLotteryAlert}>
         <AlertDialogContent className="bg-[#2a2a2a] border-none text-white max-w-sm">
           <Button
@@ -76,7 +106,6 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
             <X size={20} />
           </Button>
           <AlertDialogHeader className="text-center">
-            
             <AlertDialogDescription className="text-center flex flex-col mt-2 space-y-2">
               <span className="text-[#FFFFFF80] text-lg">
                 The lottery draw begins at 5:20 PM!
@@ -96,6 +125,13 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
           </div>
         </AlertDialogContent>
       </AlertDialog>
+
+      {/* Betting Modal */}
+      <LotteryParticipation
+        isOpen={showBettingModal}
+        onClose={handleCloseBettingModal}
+        lottery={selectedLottery}
+      />
 
       <div className="space-y-4">
         <div className="flex items-center justify-between">
@@ -149,7 +185,6 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         lotteries={lotteries}
-        onParticipate={handleParticipate}
       />
     </>
   );
