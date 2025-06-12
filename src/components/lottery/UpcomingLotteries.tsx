@@ -45,7 +45,9 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showLotteryAlert, setShowLotteryAlert] = useState(false);
   const [showBettingModal, setShowBettingModal] = useState(false);
-  const [selectedLottery, setSelectedLottery] = useState<LotteryItem | null>(null);
+  const [selectedLottery, setSelectedLottery] = useState<LotteryItem | null>(
+    null
+  );
 
   const handleLotteryClick = (lottery: LotteryItem) => {
     console.log("Clicked lottery:", lottery.id);
@@ -56,10 +58,10 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
     const currentDate = new Date();
     const currentHour = currentDate.getHours();
     const currentMinute = currentDate.getMinutes();
-    const currentTime = currentHour * 60 + currentMinute; 
-    
+    const currentTime = currentHour * 60 + currentMinute;
+
     const lotteryStartTime = 17 * 60 + 20; // 5:20 PM in minutes
-    
+
     return lottery.id === "1" && currentTime >= lotteryStartTime;
   };
 
@@ -93,16 +95,19 @@ const UpcomingLotteries: React.FC<UpcomingLotteriesProps> = ({
     <>
       {/* Alert for lottery not started yet */}
       <AlertDialog open={showLotteryAlert} onOpenChange={setShowLotteryAlert}>
-        <AlertDialogContent className="bg-[#2a2a2a] border-none text-white max-w-sm">
+        <AlertDialogContent className="bg-black/30 backdrop-blur-md border border-white/10 text-white max-w-sm shadow-2xl">
           <Button
             variant="ghost"
             size="icon"
             onClick={() => setShowLotteryAlert(false)}
-            className="absolute right-2 top-2 text-gray-400 hover:text-white h-10 w-10"
+            className="absolute right-2 top-2 text-gray-400 hover:text-white h-10 w-10 hover:bg-white/10"
           >
             <X size={20} />
           </Button>
           <AlertDialogHeader className="text-center">
+            <AlertDialogTitle className="sr-only">
+              Lottery Not Started
+            </AlertDialogTitle>
             <AlertDialogDescription className="text-center flex flex-col mt-2 space-y-2">
               <span className="text-[#FFFFFF80] text-lg">
                 The lottery draw begins at 5:20 PM!

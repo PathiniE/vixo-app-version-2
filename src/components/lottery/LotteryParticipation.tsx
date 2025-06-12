@@ -132,6 +132,7 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
           onPointerDownOutside={onClose}
         >
           <SheetHeader className="p-4">
+            <SheetTitle className="sr-only">Lottery Participation</SheetTitle>
             <div className="flex items-center justify-between relative">
               <Button
                 variant="ghost"
@@ -224,7 +225,12 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
         open={showTokenSelectionAlert}
         onOpenChange={setShowTokenSelectionAlert}
       >
-        <AlertDialogContent className="bg-[#2a2a2a] border-none h-52 text-white max-w-sm">
+        <AlertDialogContent className="bg-black/30 backdrop-blur-md border border-white/10 h-52 text-white max-w-sm shadow-2xl">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="sr-only">
+              Select Token
+            </AlertDialogTitle>
+          </AlertDialogHeader>
           <Button
             variant="ghost"
             size="icon"
@@ -237,7 +243,7 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
           <div className="flex gap-4 justify-center py-4">
             <Button
               onClick={() => handleTokenSelection("USDT")}
-              className="bg-[#E2531933]  text-[#E25319]  px-8 py-14 text-lg font-semibold rounded-lg border-2 border-[#E25319]"
+              className="bg-[#E2531933] text-[#E25319] px-8 py-14 text-lg font-semibold rounded-lg border-2 border-[#E25319]"
             >
               USDT
             </Button>
@@ -258,7 +264,12 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
         open={showInsufficientFundsAlert}
         onOpenChange={setShowInsufficientFundsAlert}
       >
-        <AlertDialogContent className="bg-[#2a2a2a] border-none text-white max-w-sm">
+        <AlertDialogContent className="bg-black/30 backdrop-blur-md border border-white/10 text-white max-w-sm shadow-2xl">
+          <AlertDialogHeader>
+            <AlertDialogTitle className="sr-only">
+              Insufficient Funds
+            </AlertDialogTitle>
+          </AlertDialogHeader>
           <Button
             variant="ghost"
             size="icon"
@@ -267,24 +278,24 @@ const LotteryParticipation: React.FC<LotteryParticipationModalProps> = ({
           >
             <X size={20} />
           </Button>
-          <AlertDialogHeader>
-            <AlertDialogDescription className="text-center text-lg text-[#FFFFFF80] mt-2">
-              You don't have enough {selectedToken} to place a bet in this
-              lottery!
-              <br />
-              <span className="text-sm">
-                Please deposit funds to recharge your wallet.
-              </span>
-            </AlertDialogDescription>
-          </AlertDialogHeader>
+          <AlertDialogDescription className="text-center text-lg text-[#FFFFFF80] mt-2">
+            You don't have enough {selectedToken} to place a bet in this
+            lottery!
+            <br />
+            <span className="text-sm">
+              Please deposit funds to recharge your wallet.
+            </span>
+          </AlertDialogDescription>
           <div className="flex-col flex items-center justify-center">
             <Button
               onClick={handleDeposit}
-              className="bg-[#E2531933]  text-[#E25319] py-5 px-6 text-xl"
+              className="bg-[#E2531933] text-[#E25319] py-5 px-6 text-xl"
             >
               Deposit
             </Button>
-            <span className="text-center text-[#FFFFFF80] text-sm mt-1">or</span>
+            <span className="text-center text-[#FFFFFF80] text-sm mt-1">
+              or
+            </span>
             <Button
               onClick={handleUseVIXOTokens}
               className="bg-transparent text-[#FFFFFF80] underline"
