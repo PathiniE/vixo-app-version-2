@@ -57,7 +57,7 @@ const LotteryCard = ({
 
   return (
     <>
-      <div className="max-w-sm mt-8">
+      <div className="w-full mt-8">
         <div className="bg-gradient-to-br from-amber-600 via-orange-600 to-red-600 p-0.5 rounded-2xl">
           <div className="bg-black rounded-2xl p-6">
             {/* Prize Pool */}
