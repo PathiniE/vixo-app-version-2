@@ -13,7 +13,7 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
 }) => {
   // Navigation configuration with updated paths
   const navigationPages = {
-    play: "/play",
+    play: "/",
     tasks: "/tasks",
     lotteries: "/pages/lottery",
     friends: "/friends",
