@@ -145,8 +145,8 @@ const AllLotteries: React.FC<AllLotteriesModalProps> = ({
       <Sheet open={isOpen} onOpenChange={onClose}>
         <SheetContent
           side="bottom"
-          className="bg-[#191919] border-none rounded-t-lg max-h-[80vh] p-0 [&>button]:hidden"
-          onPointerDownOutside={onClose}
+          className="bg-[#191919] border-none rounded-t-lg max-h-[80vh] p-0 [&>button]:hidden data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom data-[state=closed]:duration-500 data-[state=open]:duration-300"
+          onPointerDownOutside={(e) => e.preventDefault()}
         >
           <SheetHeader className="p-4">
             <div className="flex items-center justify-between relative">
