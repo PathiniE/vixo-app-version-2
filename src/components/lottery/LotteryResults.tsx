@@ -82,7 +82,7 @@ const LotteryResults: React.FC<LotteryResultsProps> = ({
   );
 
   const ResultsList = ({ items }: { items: ResultItem[] }) => (
-    <div className="space-y-2 p-4">
+    <div className="space-y-2 mt-2 ">
       {items.map((result, index) => (
         <div
           key={result.id}
@@ -117,16 +117,16 @@ const LotteryResults: React.FC<LotteryResultsProps> = ({
     <div className="bg-[#191919] min-h-screen">
       <div className="max-w-md mx-auto">
         <Tabs defaultValue="results" className="w-full">
-          <TabsList className="flex w-full bg-transparent rounded-none h-10 gap-6 justify-start">
+          <TabsList className="flex w-full bg-transparent rounded-none h-10 justify-start p-0 relative">
             <TabsTrigger
               value="results"
-              className="relative bg-transparent text-white text-xl shadow-none data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none pb-3 data-[state=active]:after:content-[''] data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-1/2 data-[state=active]:after:-translate-x-1/2 data-[state=active]:after:w-8 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-[#E25319] data-[state=active]:after:rounded-full"
+              className=" bg-transparent text-[#FFFFFF80] data-[state=active]:text-white text-xl shadow-none data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none pb-3 px-0 absolute left-0 data-[state=active]:after:content-[''] data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-1/2 data-[state=active]:after:-translate-x-1/2 data-[state=active]:after:w-8 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-[#E25319] data-[state=active]:after:rounded-full"
             >
               Results
             </TabsTrigger>
             <TabsTrigger
               value="my-winnings"
-              className="relative bg-transparent text-white text-xl shadow-none data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none pb-3 data-[state=active]:after:content-[''] data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-1/2 data-[state=active]:after:-translate-x-1/2 data-[state=active]:after:w-8 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-[#E25319] data-[state=active]:after:rounded-full"
+              className=" bg-transparent text-[#FFFFFF80] data-[state=active]:text-white text-xl shadow-none data-[state=active]:bg-transparent data-[state=active]:shadow-none rounded-none pb-3 px-0 absolute left-30 data-[state=active]:after:content-[''] data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:left-1/2 data-[state=active]:after:-translate-x-1/2 data-[state=active]:after:w-8 data-[state=active]:after:h-0.5 data-[state=active]:after:bg-[#E25319] data-[state=active]:after:rounded-full"
             >
               My Winnings
             </TabsTrigger>

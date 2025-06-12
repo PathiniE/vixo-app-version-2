@@ -11,9 +11,9 @@ const BottomNavigation: React.FC<BottomNavigationProps> = ({
   activeTab = "lotteries",
   onTabChange = () => {},
 }) => {
-  // Navigation configuration with updated paths
+  
   const navigationPages = {
-    play: "/play",
+    play: "/",
     tasks: "/tasks",
     lotteries: "/pages/lottery",
     friends: "/friends",

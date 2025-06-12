@@ -70,20 +70,20 @@ const LotteryCard = ({
 
             {/* Countdown Timer */}
             <div className="mb-6">
-              <div className="flex justify-center space-x-2">
+              <div className="flex justify-center items-center space-x-3 sm:space-x-4">
                 <div className="text-center">
                   <div className="text-white text-xs font-medium mb-2">
                     Hours
                   </div>
                   <div className="bg-[#F4B92E] p-0.5 rounded-lg">
-                    <div className="bg-black rounded-lg px-6 py-5 min-w-[80px]">
-                      <div className="text-4xl font-bold text-white text-center">
+                    <div className="bg-black rounded-lg px-4 py-4 sm:px-6 sm:py-5 min-w-[70px] sm:min-w-[80px]">
+                      <div className="text-3xl sm:text-4xl font-bold text-white text-center">
                         {timeLeft.hours.toString().padStart(2, "0")}
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="text-white text-3xl font-bold self-center">
+                <div className="text-white text-2xl sm:text-3xl font-bold">
                   :
                 </div>
                 <div className="text-center">
@@ -91,14 +91,14 @@ const LotteryCard = ({
                     Minutes
                   </div>
                   <div className="bg-[#F4B92E] p-0.5 rounded-lg">
-                    <div className="bg-black rounded-lg px-6 py-5 min-w-[80px]">
-                      <div className="text-4xl font-bold text-white text-center">
+                    <div className="bg-black rounded-lg px-4 py-4 sm:px-6 sm:py-5 min-w-[70px] sm:min-w-[80px]">
+                      <div className="text-3xl sm:text-4xl font-bold text-white text-center">
                         {timeLeft.minutes.toString().padStart(2, "0")}
                       </div>
                     </div>
                   </div>
                 </div>
-                <div className="text-white text-3xl font-bold self-end pb-4">
+                <div className="text-white text-2xl sm:text-3xl font-bold">
                   :
                 </div>
                 <div className="text-center">
@@ -106,8 +106,8 @@ const LotteryCard = ({
                     Seconds
                   </div>
                   <div className="bg-[#F4B92E] p-0.5 rounded-lg">
-                    <div className="bg-black rounded-lg px-6 py-5 min-w-[80px]">
-                      <div className="text-4xl font-bold text-white text-center">
+                    <div className="bg-black rounded-lg px-4 py-4 sm:px-6 sm:py-5 min-w-[70px] sm:min-w-[80px]">
+                      <div className="text-3xl sm:text-4xl font-bold text-white text-center">
                         {timeLeft.seconds.toString().padStart(2, "0")}
                       </div>
                     </div>

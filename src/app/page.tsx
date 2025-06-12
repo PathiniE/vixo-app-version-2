@@ -24,7 +24,15 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#191919] flex flex-col px-6">
+    <div className="min-h-screen bg-[#191919] flex flex-col relative z-10 px-6">
+      
+        <Image
+          src={"/home/shadow-blob.png"}
+          alt="shadow"
+          fill
+          className="opacity-80 pointer-events-none absolute z-0 w-full h-full"
+        />
+     
       {/* Header */}
       <Header />
 
@@ -32,18 +40,17 @@ export default function Home() {
       <div className="flex justify-center pt-8 mb-8">
         <Balance amount="000,000" />
       </div>
+      
 
       {/* Level Progress */}
       <div className="">
         <LevelProgress gameType="Gamesbet" levelsLeft="10/10" progress={100} />
       </div>
-      
 
       {/* Fox Character Button - Centered and takes remaining space */}
       <div className="flex-1 flex items-center justify-center">
         <FoxCharacter onClick={handleFoxClick} />
       </div>
-      
 
       {/* Bottom Navigation */}
       <BottomNavigation activeTab={activeTab} onTabChange={handleTabChange} />
